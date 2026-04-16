@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>New Transaction — SecureBank AI</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}" />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+</head>
+<body class="page-dashboard">
+
+  <!-- ── Sidebar ──────────────────────────────────────── -->
+  <aside class="sidebar">
+    <div class="nav-brand sidebar-brand">
+      <span class="shield-icon">🛡</span>
+      <span class="brand-name">SecureBank<span class="brand-ai">AI</span></span>
+    </div>
+    <nav class="sidebar-nav">
+      <a href="/dashboard"   class="nav-item">📊 Dashboard</a>
+      <a href="/transaction" class="nav-item active">💳 New Transaction</a>
+      <a href="/threat-result" class="nav-item">🔍 Threat Logs</a>
+    </nav>
+    <button class="btn btn-outline btn-logout" onclick="logout()">Sign Out</button>
+  </aside>
+
+  <!-- ── Main ─────────────────────────────────────────── -->
+  <main class="dash-main">
+    <header class="dash-header">
+      <div>
+        <h1 class="dash-title">New Transaction</h1>
+        <p class="dash-sub">Your transaction will be analysed by AI in real-time</p>
+      </div>
+      <a href="/dashboard" class="btn btn-outline">← Dashboard</a>
+    </header>
+
+    <div class="txn-layout">
+      <!-- Transaction Form -->
+      <div class="form-card">
+        <h3 class="form-card-title">Transaction Details</h3>
+
+        <div id="txn-alert" class="alert hidden"></div>
+
+        <form id="txn-form" novalidate>
+          <div class="form-group">
+            <label for="amount">Amount (₹)</label>
+            <input type="number" id="amount" name="amount"
+                   placeholder="e.g. 1500.00" min="1" step="0.01" />
+            <span class="field-error" id="amount-error"></span>
+          </div>
+
+          <div class="form-group">
+            <label for="location">Location</label>
+            <select id="location" name="location">
+              <option value="">— Select Location —</option>
+              <option value="Mumbai">Mumbai</option>
+              <option value="Delhi">Delhi</option>
+              <option value="Bengaluru">Bengaluru</option>
+              <option value="Nashik">Nashik</option>
+              <option value="Pune">Pune</option>
+              <option value="Hyderabad">Hyderabad</option>
+              <option value="International">International</option>
+              <option value="Unknown">Unknown</option>
+            </select>
+            <span class="field-error" id="location-error"></span>
+          </div>
+
+          <div class="form-group">
+            <label for="device_info">Device</label>
+            <select id="device_info" name="device_info">
+              <option value="">— Select Device —</option>
+              <option value="Personal Laptop">Personal Laptop</option>
+              <option value="Personal Mobile">Personal Mobile</option>
+              <option value="ATM">ATM</option>
+              <option value="New Device">New Device</option>
+              <option value="Unknown">Unknown</option>
+            </select>
+            <span class="field-error" id="device-error"></span>
+          </div>
+
+          <div class="form-group">
+            <label class="checkbox-label">
+              <input type="checkbox" id="is_foreign" name="is_foreign" />
+              <span>International / Foreign Transaction</span>
+            </label>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-full" id="txn-btn">
+            🤖 Analyse & Submit
+          </button>
+        </form>
+      </div>
+
+      <!-- Risk info panel -->
+      <div class="risk-info-panel">
+        <h3>How Risk is Calculated</h3>
+        <div class="risk-factor">
+          <div class="rf-icon">💵</div>
+          <div>
+            <strong>Transaction Amount</strong>
+            <p>Large or unusual amounts increase fraud probability.</p>
+          </div>
+        </div>
+        <div class="risk-factor">
+          <div class="rf-icon">📍</div>
+          <div>
+            <strong>Location</strong>
+            <p>Unknown or international origins raise the risk score.</p>
+          </div>
+        </div>
+        <div class="risk-factor">
+          <div class="rf-icon">📱</div>
+          <div>
+            <strong>Device</strong>
+            <p>New or unrecognised devices are flagged as higher risk.</p>
+          </div>
+        </div>
+        <div class="risk-factor">
+          <div class="rf-icon">🕐</div>
+          <div>
+            <strong>Transaction Time</strong>
+            <p>Midnight–5 AM transactions are statistically more suspicious.</p>
+          </div>
+        </div>
+        <div class="risk-levels-legend">
+          <div class="rl-item"><span class="badge-low">LOW</span> Safe to proceed</div>
+          <div class="rl-item"><span class="badge-med">MEDIUM</span> Proceed with caution</div>
+          <div class="rl-item"><span class="badge-high">HIGH</span> Immediate alert sent</div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/transaction.js') }}"></script>
+</body>
+</html>

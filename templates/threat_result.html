@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Threat Logs — SecureBank AI</title>
+
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}" />
+
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+
+  <style>
+    .tip-box {
+      margin: 20px;
+      padding: 15px;
+      border-radius: 10px;
+      background: #1e293b;
+      color: white;
+    }
+
+    .tip-box ul {
+      padding-left: 20px;
+    }
+  </style>
+</head>
+
+<body class="page-dashboard">
+
+  <!-- ── Sidebar ───────────────────────── -->
+  <aside class="sidebar">
+    <div class="nav-brand sidebar-brand">
+      <span class="shield-icon">🛡</span>
+      <span class="brand-name">SecureBank<span class="brand-ai">AI</span></span>
+    </div>
+
+    <nav class="sidebar-nav">
+      <a href="/dashboard" class="nav-item">📊 Dashboard</a>
+      <a href="/transaction" class="nav-item">💳 New Transaction</a>
+      <a href="/threat-result" class="nav-item active">🔍 Threat Logs</a>
+    </nav>
+
+    <button class="btn btn-outline btn-logout" onclick="logout()">Sign Out</button>
+  </aside>
+
+  <!-- ── Main ───────────────────────── -->
+  <main class="dash-main">
+
+    <header class="dash-header">
+      <div>
+        <h1 class="dash-title">Threat Detection Logs</h1>
+        <p class="dash-sub">Complete AI analysis results for all your transactions</p>
+      </div>
+      <a href="/transaction" class="btn btn-primary">+ New Transaction</a>
+    </header>
+
+    <!-- ✅ Tips Section -->
+    <div class="tip-box">
+      <h3>💡 Safety Tips</h3>
+      <ul id="tips-list">
+        <li>No tips available yet</li>
+      </ul>
+    </div>
+
+    <!-- Filter -->
+    <div class="filter-bar">
+      <button class="filter-btn active" data-risk="ALL">All</button>
+      <button class="filter-btn" data-risk="LOW">🟢 Low Risk</button>
+      <button class="filter-btn" data-risk="MEDIUM">🟡 Medium Risk</button>
+      <button class="filter-btn" data-risk="HIGH">🔴 High Risk</button>
+    </div>
+
+    <!-- Logs -->
+    <div id="threat-log-list" class="threat-log-list">
+      <div class="table-loading">Loading threat logs...</div>
+    </div>
+
+    <!-- Empty -->
+    <div id="empty-state" class="empty-state hidden">
+      <div class="empty-icon">🛡</div>
+      <h3>No threats detected yet</h3>
+      <p>Add a transaction to see AI analysis results here.</p>
+      <a href="/transaction" class="btn btn-primary">Make First Transaction</a>
+    </div>
+
+    <!-- Modal -->
+    <div id="detail-modal" class="modal hidden">
+      <div class="modal-backdrop" onclick="closeModal()"></div>
+      <div class="modal-box">
+        <button class="modal-close" onclick="closeModal()">✕</button>
+        <h3 class="modal-title">Transaction Analysis</h3>
+
+        <!-- ✅ Modal Content -->
+        <div id="modal-content"></div>
+
+        <!-- ✅ Tips inside modal -->
+        <div class="tip-box">
+          <h3>💡 Safety Tips</h3>
+          <ul id="modal-tips"></ul>
+        </div>
+
+      </div>
+    </div>
+
+  </main>
+
+  <!-- JS Files -->
+  <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/threat_result.js') }}"></script>
+
+  <!-- ✅ Tips Script -->
+  <script>
+    function displayTips(data) {
+      const tipsList = document.getElementById("tips-list");
+      const modalTips = document.getElementById("modal-tips");
+
+      // Clear old tips
+      tipsList.innerHTML = "";
+      modalTips.innerHTML = "";
+
+      if (data.tips && data.tips.length > 0) {
+        data.tips.forEach(tip => {
+          const li1 = document.createElement("li");
+          li1.textContent = tip;
+          tipsList.appendChild(li1);
+
+          const li2 = document.createElement("li");
+          li2.textContent = tip;
+          modalTips.appendChild(li2);
+        });
+      } else {
+        tipsList.innerHTML = "<li>No tips available</li>";
+        modalTips.innerHTML = "<li>No tips available</li>";
+      }
+    }
+  </script>
+
+</body>
+</html>

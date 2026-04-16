@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard — SecureBank AI</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}" />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <!-- Chart.js from CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+</head>
+<body class="page-dashboard">
+
+  <!-- ── Sidebar ──────────────────────────────────────── -->
+  <aside class="sidebar">
+    <div class="nav-brand sidebar-brand">
+      <span class="shield-icon">🛡</span>
+      <span class="brand-name">SecureBank<span class="brand-ai">AI</span></span>
+    </div>
+    <nav class="sidebar-nav">
+      <a href="/dashboard"   class="nav-item active">📊 Dashboard</a>
+      <a href="/transaction" class="nav-item">💳 New Transaction</a>
+      <a href="/threat-result" class="nav-item">🔍 Threat Logs</a>
+    </nav>
+    <button class="btn btn-outline btn-logout" onclick="logout()">Sign Out</button>
+  </aside>
+
+  <!-- ── Main ─────────────────────────────────────────── -->
+  <main class="dash-main">
+    <header class="dash-header">
+      <div>
+        <h1 class="dash-title">Dashboard</h1>
+        <p class="dash-sub" id="welcome-msg">Loading...</p>
+      </div>
+      <a href="/transaction" class="btn btn-primary">+ New Transaction</a>
+    </header>
+
+    <!-- KPI Cards -->
+    <div class="kpi-grid">
+      <div class="kpi-card">
+        <div class="kpi-icon">💳</div>
+        <div class="kpi-body">
+          <span class="kpi-label">Total Transactions</span>
+          <span class="kpi-value" id="kpi-total">—</span>
+        </div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-icon">💰</div>
+        <div class="kpi-body">
+          <span class="kpi-label">Total Amount</span>
+          <span class="kpi-value" id="kpi-amount">—</span>
+        </div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-icon">✅</div>
+        <div class="kpi-body">
+          <span class="kpi-label">Normal</span>
+          <span class="kpi-value" id="kpi-normal">—</span>
+        </div>
+      </div>
+      <div class="kpi-card kpi-alert">
+        <div class="kpi-icon">⚠️</div>
+        <div class="kpi-body">
+          <span class="kpi-label">Suspicious</span>
+          <span class="kpi-value" id="kpi-suspicious">—</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Charts row -->
+    <div class="charts-row">
+      <div class="chart-card">
+        <h3 class="chart-title">Risk Distribution</h3>
+        <canvas id="riskPieChart" width="300" height="300"></canvas>
+      </div>
+      <div class="chart-card chart-card-wide">
+        <h3 class="chart-title">Recent Transactions</h3>
+        <canvas id="txnBarChart" height="260"></canvas>
+      </div>
+    </div>
+
+    <!-- Recent transactions table -->
+    <div class="table-card">
+      <div class="table-header">
+        <h3>Recent Transactions</h3>
+        <a href="/transaction" class="btn btn-sm btn-primary">+ Add</a>
+      </div>
+      <div class="table-wrap">
+        <table class="data-table" id="txn-table">
+          <thead>
+            <tr>
+              <th>#ID</th>
+              <th>Amount</th>
+              <th>Location</th>
+              <th>Risk</th>
+              <th>Status</th>
+              <th>Date</th>
+              <th>Details</th>
+            </tr>
+          </thead>
+          <tbody id="txn-body">
+            <tr><td colspan="7" class="table-loading">Loading transactions...</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Model info bar -->
+    <div class="model-info-bar">
+      🤖 AI Model Accuracy: <strong id="model-acc">—</strong> &nbsp;|&nbsp;
+      Powered by Random Forest + Scikit-learn
+    </div>
+  </main>
+
+  <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+</body>
+</html>

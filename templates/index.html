@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SecureBank AI — Intelligent Fraud Protection</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}" />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+</head>
+<body class="page-home">
+
+  <!-- ── Navbar ─────────────────────────────────────────── -->
+  <nav class="navbar">
+    <div class="nav-brand">
+      <span class="shield-icon">🛡</span>
+      <span class="brand-name">SecureBank<span class="brand-ai">AI</span></span>
+    </div>
+    <div class="nav-links">
+      <a href="/login"    class="btn btn-outline">Sign In</a>
+      <a href="/register" class="btn btn-primary">Get Started</a>
+    </div>
+  </nav>
+
+  <!-- ── Hero ───────────────────────────────────────────── -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-content">
+      <div class="hero-badge">🤖 AI-Powered Security</div>
+      <h1 class="hero-title">
+        Bank Without Fear.<br/>
+        <span class="gradient-text">AI Guards Every Move.</span>
+      </h1>
+      <p class="hero-subtitle">
+        Real-time fraud detection using machine learning. Every transaction
+        is analysed in milliseconds — before it's too late.
+      </p>
+      <div class="hero-cta">
+        <a href="/register" class="btn btn-primary btn-lg">Open Free Account</a>
+        <a href="/login"    class="btn btn-ghost btn-lg">Sign In →</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat"><strong>99.2%</strong><span>Detection Rate</span></div>
+        <div class="stat-divider"></div>
+        <div class="stat"><strong>&lt;50ms</strong><span>Analysis Time</span></div>
+        <div class="stat-divider"></div>
+        <div class="stat"><strong>3-Tier</strong><span>Risk Scoring</span></div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="card-3d">
+        <div class="card-chip"></div>
+        <div class="card-number">•••• •••• •••• 4821</div>
+        <div class="card-holder">SECURE BANK AI</div>
+        <div class="card-scan-line"></div>
+      </div>
+      <div class="alert-bubble alert-safe">✅ Normal — ₹500</div>
+      <div class="alert-bubble alert-danger">⚠️ HIGH RISK — ₹15,000</div>
+    </div>
+  </section>
+
+  <!-- ── Features ───────────────────────────────────────── -->
+  <section class="features">
+    <h2 class="section-title">How It Works</h2>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">🔍</div>
+        <h3>Real-time Analysis</h3>
+        <p>Every transaction is scored by our Random Forest model using amount, time, location, and device fingerprint.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📊</div>
+        <h3>3-Level Risk Score</h3>
+        <p>Transactions are classified as <span class="badge-low">LOW</span>, <span class="badge-med">MEDIUM</span>, or <span class="badge-high">HIGH</span> risk instantly.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🚨</div>
+        <h3>Instant Alerts</h3>
+        <p>Suspicious transactions trigger immediate alerts so you can act before damage is done.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📈</div>
+        <h3>Visual Dashboard</h3>
+        <p>Monitor all your transactions with charts, risk trends, and fraud probability scores.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Footer ─────────────────────────────────────────── -->
+  <footer class="footer">
+    <p>© 2024 SecureBankAI · Built with Flask + Scikit-learn · For Educational Use</p>
+  </footer>
+
+  <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>

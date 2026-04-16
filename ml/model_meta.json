@@ -1,0 +1,20 @@
+{
+  "features": [
+    "amount",
+    "hour",
+    "day_of_week",
+    "location_risk",
+    "device_risk",
+    "is_foreign",
+    "velocity_score",
+    "log_amount",
+    "odd_hour",
+    "composite_risk"
+  ],
+  "accuracy": 1.0,
+  "roc_auc": 1.0,
+  "classes": [
+    "Normal",
+    "Fraud"
+  ]
+}

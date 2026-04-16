@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Register — SecureBank AI</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}" />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+</head>
+<body class="page-auth">
+
+  <div class="auth-container">
+    <!-- Left panel -->
+    <div class="auth-panel auth-panel-left">
+      <a href="/" class="nav-brand">
+        <span class="shield-icon">🛡</span>
+        <span class="brand-name">SecureBank<span class="brand-ai">AI</span></span>
+      </a>
+      <div class="auth-illustration">
+        <div class="float-card">
+          <div class="fc-label">AI Shield Active</div>
+          <div class="fc-risk low">PROTECTED</div>
+          <div class="fc-amount">24/7 Monitor</div>
+        </div>
+      </div>
+      <p class="auth-panel-tagline">Join thousands of protected accounts.</p>
+    </div>
+
+    <!-- Right panel: form -->
+    <div class="auth-panel auth-panel-right">
+      <div class="auth-form-wrapper">
+        <h2 class="auth-title">Create Account</h2>
+        <p class="auth-sub">Start securing your transactions with AI</p>
+
+        <div id="auth-alert" class="alert hidden"></div>
+
+        <form id="register-form" novalidate>
+          <div class="form-group">
+            <label for="name">Full Name</label>
+            <input type="text" id="name" name="name"
+                   placeholder="John Doe" autocomplete="name" />
+            <span class="field-error" id="name-error"></span>
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email address</label>
+            <input type="email" id="email" name="email"
+                   placeholder="you@example.com" autocomplete="email" />
+            <span class="field-error" id="email-error"></span>
+          </div>
+
+          <div class="form-group">
+            <label for="password">Password</label>
+            <div class="input-pw-wrap">
+              <input type="password" id="password" name="password"
+                     placeholder="Min 6 characters" autocomplete="new-password" />
+              <button type="button" class="toggle-pw" onclick="togglePw('password')">👁</button>
+            </div>
+            <div class="pw-strength-bar"><div id="pw-strength-fill"></div></div>
+            <span class="field-error" id="password-error"></span>
+          </div>
+
+          <div class="form-group">
+            <label for="confirm_password">Confirm Password</label>
+            <input type="password" id="confirm_password" name="confirm_password"
+                   placeholder="Repeat password" autocomplete="new-password" />
+            <span class="field-error" id="confirm-error"></span>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-full" id="register-btn">
+            Create Account
+          </button>
+        </form>
+
+        <p class="auth-switch">Already have an account?
+          <a href="/login">Sign in →</a>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/auth.js') }}"></script>
+</body>
+</html>
